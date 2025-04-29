@@ -17,14 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'google.com': ['q'],
             'google.co.uk': ['q'],
             'google.de': ['q'],
-            // Add other Google domains as needed
         };
 
-        // Find matching domain
         const domain = Object.keys(preserveParams).find(d => urlObj.hostname.includes(d)) || '';
         const paramsToKeep = preserveParams[domain] || [];
 
-        // Create new URLSearchParams with only preserved parameters
         const cleanParams = new URLSearchParams();
         for (const [key, value] of urlObj.searchParams) {
             if (paramsToKeep.includes(key)) {
@@ -32,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Rebuild URL with clean parameters
         urlObj.search = cleanParams.toString();
         return urlObj.toString();
     }
@@ -45,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function showSuccessOverlay() {
         const overlay = document.getElementById('successOverlay');
         overlay.classList.remove('hidden');
-        // Trigger fade in
+
         requestAnimationFrame(() => overlay.classList.remove('opacity-0'));
         
         setTimeout(() => {
-            // Fade out
+
             overlay.classList.add('opacity-0');
-            // Hide after fade completes
+
             setTimeout(() => overlay.classList.add('hidden'), 200);
         }, 1500);
     }
