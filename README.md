@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/logo.png" alt="Link Cleaner Logo" width="80" height="80">
+  <a href="https://linkcleaner.vercel.app/"><img src="assets/logo.png" alt="Link Cleaner Logo" width="80" height="80"></a>
   
   # [Link Cleaner](https://linkcleaner.vercel.app)
 
