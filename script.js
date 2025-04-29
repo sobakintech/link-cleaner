@@ -11,13 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function cleanUrl(url) {
         const urlObj = new URL(url);
         
-        if (urlObj.hostname.includes('youtube.com') || urlObj.hostname.includes('youtu.be')) {
-            const videoId = urlObj.searchParams.get('v');
-            urlObj.search = videoId ? `?v=${videoId}` : '';
-            return urlObj.toString();
+        // Parameters to preserve for specific sites
+        const preserveParams = {
+            'youtube.com': ['v', 't', 'list'],
+            'google.com': ['q'],
+            'google.co.uk': ['q'],
+            'google.de': ['q'],
+            // Add other Google domains as needed
+        };
+
+        // Find matching domain
+        const domain = Object.keys(preserveParams).find(d => urlObj.hostname.includes(d)) || '';
+        const paramsToKeep = preserveParams[domain] || [];
+
+        // Create new URLSearchParams with only preserved parameters
+        const cleanParams = new URLSearchParams();
+        for (const [key, value] of urlObj.searchParams) {
+            if (paramsToKeep.includes(key)) {
+                cleanParams.append(key, value);
+            }
         }
-        
-        return `${urlObj.origin}${urlObj.pathname}`;
+
+        // Rebuild URL with clean parameters
+        urlObj.search = cleanParams.toString();
+        return urlObj.toString();
     }
 
     function showSuccess() {
