@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/logo.png" alt="Link Cleaner Logo" width="80" height="80">
   
-  # Link Cleaner
+  # [Link Cleaner](https://linkcleaner.vercel.app)
 
   Remove the useless tracking stuff from your links!
 </div>
